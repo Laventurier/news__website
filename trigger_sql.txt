@@ -1,0 +1,12 @@
+CREATE trigger trig_count AFTER INSERT ON news_commentary
+FOR each
+ROW BEGIN 
+DECLARE updatecount INT;
+
+SET updatecount = ( SELECT COUNT( * ) 
+FROM news_commentary
+WHERE post_id = new.post_id ) ;
+
+UPDATE news_posts SET post_commentary_count = updatecount WHERE id = new.post_id;
+
+END
