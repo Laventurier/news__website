@@ -8,7 +8,7 @@
     <title>Dyplom</title>
     <link rel="stylesheet" href="../css/reset.css">
     <link rel="stylesheet" href="../css/rwdgrid.min.css">
-    <link rel="stylesheet" href="../css/admin.css?version=124">
+    <link rel="stylesheet" href="../css/admin.css?version=135">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="../js/ckeditor/ckeditor.js?v=6"></script>
     <link rel="stylesheet" href="https://unpkg.com/flatpickr/dist/flatpickr.min.css">

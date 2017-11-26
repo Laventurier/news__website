@@ -25,7 +25,7 @@ class admin_auth extends Admin_Engine{
                 {
                     $_SESSION['admin'] = true;
                     unset($_POST);
-                    header('Location: index.php');
+                    header('Location:?side=posts&id=1');
                     exit();
                 }else{
                     $_SESSION['user_error']='Incorrect login or password*';

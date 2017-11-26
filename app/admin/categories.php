@@ -92,7 +92,7 @@
                     }
                 }
             ?>
-            <form method="POST">
+            <form id="categorychange" method="POST">
                 <p>
                     <span>Category Name: </span>
                     <input type="text" name="name_category" value="<?php echo $tab['category']['name_category']; ?>" placeholder="name_category">
