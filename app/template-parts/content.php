@@ -1,5 +1,25 @@
 <?php if(isset($list['news'])): ?>
-
+<?php if(isset($_GET['search'])): ?>
+<?php require_once('search.php'); ?>
+<div class="container">
+    <?php if(is_array($search_)): ?>
+    <div class="serch_wrapper">
+        <?php foreach($search_['search_query'] as $val): ?>
+        <div class="search_item">
+            <div class="search_title">
+                <a href="?option=page_view&post=<?php echo $val['id']; ?>">
+                    <?php echo $val['post_title']; ?>
+                </a>
+            </div>
+            <div class="search_descr">
+                <?php echo $val['post_description']; ?>
+            </div>
+        </div>
+        <?php endforeach; ?>
+    </div>
+    <?php endif; ?>
+</div>
+<?php else: ?>
 <div id="page-main">
     <div class="container">
         <?php foreach($list['news'] as $value): ?>
@@ -29,38 +49,7 @@
             </div>
         </article>
         <?php endforeach; ?>
-<!--
-        <?php if(isset($list['count'])): ?>
-        <?php $count = ceil($list['count']/$table_data['limit']); ?>
-        <div class="pagination-wrapper">
-            <ul class="pagination">
-              <?php if($page==0): ?>
-              <li><img src="img/left-arrow.svg" alt="left_arrow"></li>
-              <?php else: ?>
-              <li><a href="?page=<?php echo $value = $page;  ?>"><img src="img/left-arrow.svg" alt="left_arrow"></a></li>
-              <?php endif; ?>
-               
-                <?php for($i = 0; $i < $count; $i++): ?>
-                <li>
-                    <?php if($i == $page): ?>
-                    <span><?php echo $i+1 ?></span>
-                    <?php else: ?>
-                    <a href="?page=<?php echo $i+1 ?>">
-                        <?php echo $i+1; ?>
-                    </a>
-                    <?php endif; ?>
-                </li>
-                <?php endfor;?>
-            <?php  if($page==$list['count'] - 1): ?>
-               <li><img src="img/right-arrow.svg" alt="right_arrow"></li>
-              <?php else: ?>
-               <li><a href="?page=<?php echo $value = $page + 2; ?>"><img src="img/right-arrow.svg" alt="right_arrow"></a></li>
-              <?php endif; ?>
-               
-            </ul>
-        </div>
-        <?php endif;?>
--->
     </div>
 </div>
+<?php endif; ?>
 <?php endif; ?>

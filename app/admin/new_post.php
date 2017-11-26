@@ -3,7 +3,6 @@
     <?php 
 $db = new Database();
 if(isset($_POST['submit'])){
-    
     $target_file = '../files/'.basename($_FILES["photo"]["name"]);
     $imageFileType = pathinfo($_FILES["photo"]["name"],PATHINFO_EXTENSION);
 
@@ -33,13 +32,24 @@ if(isset($_POST['submit'])){
             $errors['file_format_error'] = "*Sorry but there are only PNG and JPEG files can be uploaded!";
         }
     }
+    if(empty($_POST['short_descr'])){
+       $errors['short_descr_error'] = '*Please enter short description! ';
+    }
     if(empty($_POST['category'])){
        $errors['category_error'] = '*Please Select one category! ';
     }
     
     if(empty($errors)){
         move_uploaded_file($_FILES['photo']['tmp_name'], $target_file);
-        $db::news_sql_query("INSERT INTO news_posts (post_title,post_author,post_description,post_content,post_date,post_image,post_category) VALUES". "('".$_POST['title']."','".$_POST['author']."','".$_POST['editor']."','".$_POST['editor']."',".$_POST['timepicker'].",'files/".$_FILES["photo"]["name"]."',".$_POST['category'].")");
+        $title_p  = $_POST['title'];
+        $author_p = $_POST['author'];
+        $ediotr_p  = $_POST['editor'];
+        $date_p = $_POST['timepicker'];
+        $photo = $_FILES["photo"]["name"];
+        $category_p = $_POST['category'];
+        $short_descr = $_POST['short_descr'];
+        
+        $db::news_sql_query("INSERT INTO news_posts (post_title,post_author,post_description,post_content,post_date,post_image,post_category) VALUES('".$title_p."','".$author_p."','".$short_descr."','".$ediotr_p."','".$date_p."','files/".$photo."',".$category_p.")");
         echo '<div class="success">Your files has been successfully uploaded to server!</div>';
         unset($_POST);
     }
@@ -93,10 +103,18 @@ if(isset($_POST['submit'])){
                     </select>
             </p>
             <p>
+                <label for="short-descr">Short Description:</label>
+                <textarea name="short_descr" id="short-descr" maxlength="300" value="<?php if(!isset($errors[ 'short_descr_error'])){ echo $_POST['short-descr'];} ?>"></textarea>
+            </p>
+            <p>
                 <label for="editor">content:</label>
                 <textarea id="editor" name="editor"></textarea>
             </p>
-            <p><label for="photo">image: <br> </label>
+            <div class="image_cropper">
+                <div class="demo"></div>
+            </div>
+            <p>
+                <label for="photo">image: <br> </label>
 
                 <label>
                 <input id="photo" type="file" name="photo" value="photo" value="<?php if(!isset($errors[ 'photo_error'])){ echo $_FILES["photo"]["name"];} ?>">
@@ -116,6 +134,8 @@ if(isset($_POST['submit'])){
 <script>
     $(document).ready(function() {
 
+
+
         CKEDITOR.replace('editor');
         $('.title_input').keyup(function() {
             $('label[for="title"] span').text($(this).val());
@@ -128,6 +148,7 @@ if(isset($_POST['submit'])){
             $('.form__add__post label[for="title"] span').text('');
             $('.form__add__post').find('input').val('');
             $('.form__add__post').find('select').val('');
+            $('.form__add__post').find('textarea').val('');
             CKEDITOR.instances.editor.setData('', function() {
                 this.updateElement();
             });

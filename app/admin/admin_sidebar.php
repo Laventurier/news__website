@@ -9,7 +9,6 @@
                 <li><a href="?side=categories" title="Categories">Categories</a></li>
                 <li><a href="?side=comments" title="Commentaries">Commentaries</a></li>
                 <li><a href="?side=settings" title="Personal Settings">Personal Settings</a></li>
-                <li><a href="?side=users" title="Users">Users</a></li>
             </ul>
         </nav>
         <div class="logout">

@@ -26,7 +26,12 @@ abstract class Admin_Engine{
             $this->get_admin_sidebar();
             $this->get_admin_content(); 
 		}
-
+    
+        public function validate($data){
+          htmlspecialchars(stripslashes(trim($data)));
+          return $data;
+        }
+    
 		abstract function get_admin_content();
         abstract function get_admin_sidebar();
     

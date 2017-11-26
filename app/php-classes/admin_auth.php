@@ -4,28 +4,13 @@ class admin_auth extends Admin_Engine{
     public function get_admin_content()
     {
         $login =$this->admin_login();
-ECHO <<< END
-
-    <div>
-        <a href="../index.php">Home</a>
-        <form method="post">
-        $login
-        <span>Username:</span></br>
-        <input type="text" name="name" placeholder="Enter username..."></br>
-        <span>Password:</span></br>
-        <input type="password" name="pass" placeholder="Enter password..."></br>
-        <input type="submit" name="login" value="submit" >
-        </form>
-    </div>
-
-END;
+        require_once('../template-parts/admin-form.php');
     }
     
     public function get_admin_sidebar()
     {
         //Theres is no sidebar on this page
     }
-    
     public function admin_login()
     {   
         if(isset($_POST['login']))
@@ -43,14 +28,9 @@ END;
                     header('Location: index.php');
                     exit();
                 }else{
-                    $_SESSION['user_error']='Невірно введений пароль або ім\'я*';
+                    $_SESSION['user_error']='Incorrect login or password*';
 
                 }
-            }
-            if(isset($_SESSION['user_error']))
-            {
-                echo $_SESSION['user_error'];
-                unset($_SESSION['user_error']); 
             }
         }
     }

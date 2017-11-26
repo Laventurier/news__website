@@ -29,7 +29,7 @@
 		}
 		
         public function select_($table){
-            $sql = 'SELECT * FROM '.$table;
+            $sql = 'SELECT * FROM '.$table.' ORDER BY position';
             
             try{
                 $result = $this->news_sql_query($sql);
@@ -56,7 +56,6 @@
 			$this->news_get_footer();
 		}
 		public function get_news($table, $order, $limit = 30 , $offset = 0){
-            
             try{
                 $sql = "SELECT * FROM ".$table." ORDER BY ".$order." desc LIMIT ".$limit." OFFSET ".$offset;
                 $result = $this->news_sql_query($sql);

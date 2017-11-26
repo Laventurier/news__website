@@ -18,6 +18,9 @@
             case 'new_post': 
                 require_once('new_post.php'); 
                 break;
+            case 'search': 
+                require_once('search.php'); 
+                break;
             case '': 
                 require_once('main.php'); 
                 break;

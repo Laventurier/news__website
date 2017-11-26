@@ -1,3 +1,14 @@
 AddDefaultCharset utf8
 php_value upload_max_filesize 10M
 php_value post_max_size 10M
+
+Options +FollowSymLinks -MultiViews
+
+RewriteEngine On
+RewriteBase /
+#RewriteRule ^(.*)$ index.php?params=$1 [NC]
+#RewriteCond %{REQUEST_FILENAME} !-f
+#RewriteCond %{REQUEST_FILENAME} !-d
+#RewriteRule ^category/$ ?option=category&id=1 [NC]
+#RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\s(.*)/index\.php [NC]
+#RewriteRule ^ %1 [R=301,L]

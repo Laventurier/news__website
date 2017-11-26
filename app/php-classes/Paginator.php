@@ -40,7 +40,7 @@ class Paginator {
         $page_db_connector = new admin_page;
         
         $result = $page_db_connector->news_sql_query('SELECT * FROM '.$table_name.' LIMIT '.$this->start.', '.$this->limit); 
-        echo '<div class="paginatorWrapper">';
+        echo '<div class="paginatorWrapper container">';
         echo '<div class="paginator_content">';
             echo '<table>';
                 echo "<tr>";
@@ -59,8 +59,8 @@ class Paginator {
                 echo "<td>".date_format(date_create($rows['post_date']),'d.m.Y')."</td>";
                 echo "<td>".$rows['post_author']."</td>";
                 echo "<td> <span class='count_comm'>".$rows['post_commentary_count']."</span></td>";
-                echo "<td><a href='?side=posts&id=".$_GET['id']."&edit=".$rows['id']."'>Ред.</a></td>";
-                echo "<td><a href='?side=posts&id=".$_GET['id']."&del=".$rows['id']."'>Вид.</a></td>";
+                echo "<td><a href='?side=posts&id=".$_GET['id']."&edit=".$rows['id']."'>Edit</a></td>";
+                echo "<td><a href='?side=posts&id=".$_GET['id']."&del=".$rows['id']."'>Remove</a></td>";
                 echo "</tr>";
             }
             echo '</table>'; 
@@ -82,7 +82,7 @@ class Paginator {
         echo "<a href='?side=posts&".$get_name."=".($id+1)."' class='button next'>&gt;</a>";
         }
         else{
-        echo "<li class='disable right'>&gt;</li>";
+            echo "<li class='disable right'>&gt;</li>";
         }
 
         echo "<ul class='pagination'>";

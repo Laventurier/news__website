@@ -1,5 +1,5 @@
-CREATE trigger trig_count AFTER INSERT ON news_commentary
-FOR each
+CREATE DEFINER =  `root`@`localhost` TRIGGER `trig_count` AFTER INSERT ON  `news_commentary` 
+FOR EACH
 ROW BEGIN 
 DECLARE updatecount INT;
 
@@ -8,5 +8,17 @@ FROM news_commentary
 WHERE post_id = new.post_id ) ;
 
 UPDATE news_posts SET post_commentary_count = updatecount WHERE id = new.post_id;
+
+END
+###########################################
+CREATE DEFINER =  `root`@`localhost` TRIGGER `max_position` Before INSERT ON  `news_category` 
+FOR EACH
+ROW BEGIN 
+DECLARE max_value INT;
+
+SET max_value = ( SELECT MAX(  `position` ) 
+FROM news_category ) +1;
+
+SET new.position = max_value;
 
 END
