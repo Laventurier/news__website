@@ -5,21 +5,21 @@
             <?php if(isset($_SESSION['author_error'])): ?>
             <span><?php echo $_SESSION['author_error']; ?></span>
             <?php unset($_SESSION['author_error']); endif; ?>
-            <input type="text" name="author" placeholder="Ім'я">
+            <input type="text" name="author" placeholder="Ім'я" value="<?php echo $_POST[" author "]; ?>">
 
         </p>
         <p>
             <?php if(isset($_SESSION['email_error'])): ?>
             <span><?php echo $_SESSION['email_error']; ?></span>
             <?php unset($_SESSION['email_error']); endif; ?>
-            <input type="text" name="email" placeholder="Email">
+            <input type="text" name="email" placeholder="Email" value="<?php echo $_POST[" email "]; ?>">
 
         </p>
         <p>
             <?php if(isset($_SESSION['commentary_error'])): ?>
             <span><?php echo $_SESSION['commentary_error']; ?></span>
             <?php unset($_SESSION['commentary_error']); endif; ?>
-            <textarea name="comment" placeholder="Прокоментувати"></textarea>
+            <textarea name="comment" placeholder="Прокоментувати" value="<?php echo $_POST[" comment "]; ?>"></textarea>
 
         </p>
         <p>

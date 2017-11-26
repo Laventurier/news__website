@@ -44,7 +44,9 @@ class page_view extends Engine{
             }
             echo '<br>'.$valid;
         }
-        
+        if($_SESSION['sent'] == 1){
+            unset($_POST);
+        }
 
         if(!$_GET['post']){
             exit('Не правильний id новини!');
